@@ -10,8 +10,8 @@
         <div class="row mb-5">
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">Vegefoods</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
+                    <h2 class="ftco-heading-2">Anggur Kita</h2>
+                    <p>.</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -52,12 +52,12 @@
                     <h2 class="ftco-heading-2">Have a Questions?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain
-                                    View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 858 2177
-                                        1883</span></a></li>
+                            <li><a href="#"><span class="icon icon-map-marker"></span><span
+                                        class="text">{{ $perusahaans->first()->address }}</span></a></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span
+                                        class="text">{{ $perusahaans->first()->phone }}</span></a></li>
                             <li><a href="#"><span class="icon icon-envelope"></span><span
-                                        class="text">info@yourdomain.com</span></a></li>
+                                        class="text">{{ $perusahaans->first()->email }}</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,7 +72,8 @@
                         document.write(new Date().getFullYear());
 
                     </script> All rights reserved | This template is made with <i class="icon-heart color-danger"
-                        aria-hidden="true"></i> by <a href="https://www.linkedin.com/in/m-gymnastiar-010813270/" target="_blank">AgimDudu</a>
+                        aria-hidden="true"></i> by <a href="https://www.linkedin.com/in/m-gymnastiar-010813270/"
+                        target="_blank">AgimDudu</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>

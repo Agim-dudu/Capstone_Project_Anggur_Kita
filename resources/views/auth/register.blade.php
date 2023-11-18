@@ -70,13 +70,13 @@
             <div class="text-center mb-2">
                 <div class="text-center mb-2 text-white">or register with</div>
                 <!-- Facebook Button -->
-                <a href="" class="btn btn-social btn-facebook">facebook</a>
+                <a href="/auth/facebook/redirect" class="btn btn-social btn-facebook">facebook</a>
 
                 <!-- Google Button -->
-                <a href="" class="btn btn-social btn-google">google</a>
+                <a href="/auth/google/redirect" class="btn btn-social btn-google">google</a>
 
-                <!-- Twitter Button -->
-                <a href="" class="btn btn-social btn-twitter">twitter</a>
+                {{-- <!-- Twitter Button -->
+                <a href="" class="btn btn-social btn-twitter">twitter</a> --}}
             </div>
             <div class="text-center mb-5 text-white">Already have an account?
                 <a class="login-link" href="{{ route('login') }}">Login here</a>

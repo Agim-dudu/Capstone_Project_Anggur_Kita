@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Your Cart')
+@section('title', 'Keranjang Anda')
 
 @section('content')
 
@@ -8,20 +8,19 @@
 @include('layouts.header')
 <!-- END Header -->
 
-<!-- nav -->
+<!-- Navigasi -->
 @include('layouts.navigation')
-<!-- END nav -->
+<!-- END Navigasi -->
 
-<div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
-    <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
-                <h1 class="mb-0 bread">My Cart</h1>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Gambar Hero yang Dapat Digunakan Kembali -->
+@component('components.hero-bg', [
+'backgroundImageUrl' => 'http://127.0.0.1:8000/assets/images/bg-cart.jpg',
+'homeUrl' => '/',
+'homeText' => 'Beranda',
+'pageName' => 'Keranjang Anda',
+'pageTitle' => 'Keranjang Anda',
+])
+@endcomponent
 
 <section class="ftco-section ftco-cart">
     <div class="container">
@@ -33,143 +32,166 @@
                             <tr class="text-center">
                                 <th>&nbsp;</th>
                                 <th>&nbsp;</th>
-                                <th>Product name</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
+                                <th>Nama Produk</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $total = 0;
+                            $weight = 0;
+                            @endphp
+                            @forelse (session('cart', []) as $id => $details)
+                            @php
+                            $total += $details['price'] * $details['quantity'];
+                            $weight += $details['quantity'] * 1000;
+                            @endphp
                             <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                <td class="product-remove"><a href=""><span class="ion-ios-close"></span></a></td>
 
                                 <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-3.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$4.90</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
+                                    <div class="img"
+                                        style="background-image:url({{ asset('storage/images/product/')}}/{{ $details['image'] }});">
                                     </div>
                                 </td>
 
-                                <td class="total">$4.90</td>
-                            </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-4.jpg);"></div>
-                                </td>
-
                                 <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
+                                    <h3>{{ $details['name'] }}</h3>
+                                    <p>{{ $details['description'] }}</p>
                                 </td>
 
-                                <td class="price">$15.70</td>
+                                <td class="price">Rp. {{ $details['price'] }}</td>
 
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
+                                <td class="price">{{ $details['quantity'] }} Kg</td>
 
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
+                                <td class="total">Rp. {{ $details['price'] * $details['quantity'] }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Keranjang Anda kosong.</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-end">
-            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-                <div class="cart-total mb-3">
-                    <h3>Coupon Code</h3>
-                    <p>Enter your coupon code if you have one</p>
-                    <form action="#" class="info">
-                        <div class="form-group">
-                            <label for="">Coupon code</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
-                        </div>
-                    </form>
-                </div>
-                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
-            </div>
-            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-                <div class="cart-total mb-3">
-                    <h3>Estimate shipping and tax</h3>
-                    <p>Enter your destination to get a shipping estimate</p>
-                    <form action="#" class="info">
-                        <div class="form-group">
-                            <label for="">Country</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="country">State/Province</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Zip/Postal Code</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
-                        </div>
-                    </form>
-                </div>
-                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
-            </div>
-            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-                <div class="cart-total mb-3">
-                    <h3>Cart Totals</h3>
-                    <p class="d-flex">
-                        <span>Subtotal</span>
-                        <span>$20.60</span>
-                    </p>
-                    <p class="d-flex">
-                        <span>Delivery</span>
-                        <span>$0.00</span>
-                    </p>
-                    <p class="d-flex">
-                        <span>Discount</span>
-                        <span>$3.00</span>
-                    </p>
-                    <hr>
-                    <p class="d-flex total-price">
-                        <span>Total</span>
-                        <span>$17.60</span>
-                    </p>
-                </div>
-                <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-    <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-            <div class="col-md-6">
-                <h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-                <span>Get e-mail updates about our latest shops and special offers</span>
-            </div>
-            <div class="col-md-6 d-flex align-items-center">
-                <form action="#" class="subscribe-form">
-                    <div class="form-group d-flex">
-                        <input type="text" class="form-control" placeholder="Enter email address">
-                        <input type="submit" value="Subscribe" class="submit px-3">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 mt-5 cart-wrap ftco-animate">
+                <form action="" class="info" method="POST">
+                    @csrf
+                    <!-- Isi formulir Anda di sini -->
+                    <h3 class="mb-4 billing-heading">Cek Ongkir</h3>
+                    <div class="form-group" style="display: none;">
+                        <label for="weight">Kota Asal</label>
+                        <input type="text" class="form-control text-left px-3" placeholder="" name="origin" id="origin"
+                            value="452" hidden>
                     </div>
-                </form>
+                    <div class="form-group" style="display: none;">
+                        <label for="weight">Kota Tujuan</label>
+                        <input type="text" class="form-control text-left px-3" placeholder="" name="destination"
+                            id="destination" value="{{ Auth::user()->city_id }}" hidden>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="weight">Berat Barang</label>
+                        <input type="number" class="form-control text-left px-3" placeholder="" name="weight"
+                            id="weight" value="{{$weight}}" hidden required>
+                    </div>
+                    <div class="form-group">
+                        <div class="select-wrap">
+                            <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                            <select name="courier" id="courier" class="form-control" required>
+                                <option value="">Pilih Kurir</option>
+                                <option value="pos">POS</option>
+                                <option value="tiki">TIKI</option>
+                                <option value="jne">JNE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary py-3 px-4">Cek Ongkir</button>
+                </form><!-- END -->
             </div>
+            <div class="col-xl-6 mt-5 cart-wrap ftco-animate">
+                <form action="{{ route('checkout.index') }}" class="info" method="POST">
+                    @csrf
+                    <h3 class="mb-4 billing-heading">Detail Pesanan</h3>
+                    <div class="row align-items-end">
+                        <div class="col-md-6">
+                            <label for="weight">Nama Anggur</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="weight">Jumlah/Kg</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="weight">Harga</label>
+                        </div>
+                        @foreach (session('cart', []) as $id => $details)
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" value="{{ $details['name'] }}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder=""
+                                    value="{{ $details['quantity'] }}" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder=""
+                                    value="{{ $details['price'] * $details['quantity'] }}" readonly>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="weight">Total Harga Anggur</label>
+                                <input type="number" class="form-control text-left px-3" placeholder="" name="weight"
+                                    id="weight" value="{{ $total }}" readonly>
+                            </div>
+                        </div>
+                        @if (!empty($ongkir))
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="select-wrap">
+                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                    <select name="shippingCost" id="shippingCost" class="form-control" required>
+                                        <option value="0">Pilih Estimasi Pengantaran</option>
+                                        @foreach ($ongkir['results'] as $item)
+                                        @foreach ($item['costs'] as $cost)
+                                        @foreach ($cost['cost'] as $harga)
+                                        <option value="{{ $harga['value'] }}">{{ $harga['etd'] }} Hari - Rp.
+                                            {{ $harga['value'] }}</option>
+                                        @endforeach
+                                        @endforeach
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        @else
+                        <div class="col-md-12">
+                            <p class="d-flex">
+                                <span>Silahkan lakukan cek ongkir terlebih dahulu</span>
+                            </p>
+                            <hr>
+                        </div>
+                        @endif
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary py-3 px-4" id="checkoutBtn" disabled>Checkout
+                                Sekarang</button>
+                        </div>
+                    </div>
+                </form><!-- END -->
+            </div>
+
         </div>
+
+    </div>
     </div>
 </section>
 
@@ -184,6 +206,11 @@
             stroke="#F96D00" /></svg></div>
 
 <script>
+    // Menggunakan JavaScript untuk mengaktifkan tombol checkout hanya jika opsi pengiriman dipilih
+    document.getElementById('shippingCost').addEventListener('change', function () {
+        document.getElementById('checkoutBtn').disabled = this.value === '0';
+    });
+
     $(document).ready(function () {
 
         var quantitiy = 0;
@@ -220,5 +247,6 @@
     });
 
 </script>
+
 
 @endsection

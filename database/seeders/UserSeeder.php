@@ -23,7 +23,16 @@ class UserSeeder extends Seeder
         $user1 = new User([
             'name' => 'agim',
             'email' => 'agimduduu@gmail.com',
-            'password' => Hash::make('password123'), // Ganti dengan kata sandi yang aman
+            'password' => Hash::make('password123'),
+            'first_name'=>'agim',
+            'last_name'=>'dudu',
+            'phone'=>'+6281258624198', 
+            'province_id'=>'13',
+            'province'=>'Kalimantan Selatan',
+            'city_id'=>'36', 
+            'city'=>'Banjarmasin', 
+            'address'=>'jalan ke surga', 
+            'postal_code'=> '70117', 
             'role' => 1,
             'email_verified_at' => now(),
         ]);

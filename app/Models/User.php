@@ -20,6 +20,16 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'first_name',
+        'avatar',
+        'last_name',
+        'phone', // Change to match the seeder attribute name
+        'province_id',
+        'province',
+        'city_id', // Change to match the seeder attribute name
+        'city', // Change to match the seeder attribute name
+        'address', // Change to match the seeder attribute name
+        'postal_code', 
         'password',
         'provider',
         'provider_id',
@@ -46,4 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the addresses associated with the user.
+     */
 }

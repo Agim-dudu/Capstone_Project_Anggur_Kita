@@ -24,7 +24,8 @@
             <!-- Input Box -->
             <div class="form-input">
                 <span><i class="fa fa-envelope-o"></i></span>
-                <input type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" required id="email" name="email" value="{{ old('email') }}">
+                <input type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror"
+                    required id="email" name="email" value="{{ old('email') }}">
                 @error('email')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -32,9 +33,8 @@
                 @enderror
             </div>
             <div class="form-input">
-                <span><i class="fa fa-lock" ></i></span>
-                <input id="password" type="password"
-                class="form-control @error('password') is-invalid @enderror"
+                <span><i class="fa fa-lock"></i></span>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                     name="password" placeholder="Password" required>
                 @error('password')
                 <div class="invalid-feedback">
@@ -44,12 +44,12 @@
             </div>
             <div class="row mb-3">
                 <!-- Remember Checkbox -->
-                <div class="col-auto d-flex align-items-center">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="remember_me" name="remember_me">
-                        <label class="custom-control-label text-white" for="remember">Remember me</label>
+                    <div class="col-auto d-flex align-items-center">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="remember_me" name="remember_me">
+                            <label class="custom-control-label text-white" for="remember_me">Remember me</label>
+                        </div>
                     </div>
-                </div>
             </div>
             <!-- Login Button -->
             <div class="mb-3">
@@ -62,13 +62,13 @@
                 <div class="text-center mb-2 text-white">or login with</div>
 
                 <!-- Facebook Button -->
-                <a href="" class="btn btn-social btn-facebook">facebook</a>
+                <a href="/auth/facebook/redirect" class="btn btn-social btn-facebook">facebook</a>
 
                 <!-- Google Button -->
-                <a href="" class="btn btn-social btn-google">google</a>
+                <a href="/auth/google/redirect" class="btn btn-social btn-google">google</a>
 
-                <!-- Twitter Button -->
-                <a href="" class="btn btn-social btn-twitter">twitter</a>
+                {{-- <!-- Twitter Button -->
+                <a href="" class="btn btn-social btn-twitter">twitter</a> --}}
             </div>
             <div class="text-center mb-5 text-white">Don't have an account?
                 <a class="register-link" href="{{ route('register') }}">Register here</a>

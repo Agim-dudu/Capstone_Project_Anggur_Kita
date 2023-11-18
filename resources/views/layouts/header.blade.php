@@ -8,15 +8,15 @@
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                 class="icon-phone2"></span></div>
-                        <span class="text">+1235 2355 98</span>
+                        <span class="text">{{ $perusahaans->first()->phone }}</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                 class="icon-paper-plane"></span></div>
-                        <span class="text">youremail@email.com</span>
+                        <span class="text">{{ $perusahaans->first()->email }}</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">3-5 Business days delivery & Free Returns</span>
+                        <span class="text">Pengantaran cepat dengan packing yang rapi</span>
                     </div>
                     @else
                     <div class="col-md pr-4 d-flex topper align-items-center">
@@ -30,15 +30,15 @@
                     @else<div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                 class="icon-phone2"></span></div>
-                        <span class="text">+1235 2355 98</span>
+                        <span class="text">{{ $perusahaans->first()->phone }}</span>
                     </div>
                     <div class="col-md pr-4 d-flex topper align-items-center">
                         <div class="icon mr-2 d-flex justify-content-center align-items-center"><span
                                 class="icon-paper-plane"></span></div>
-                        <span class="text">youremail@email.com</span>
+                        <span class="text">{{ $perusahaans->first()->email }}</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">3-5 Business days delivery & Free Returns</span>
+                        <span class="text">Pengantaran cepat dengan packing yang rapi</span>
                     </div>
                     @endauth
 
