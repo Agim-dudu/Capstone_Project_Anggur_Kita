@@ -94,8 +94,9 @@ class CartController extends Controller
             // dd($ongkir);
 
             session(['ongkir' => $ongkir]);
+            $perusahaans = Perusahaan::all();
 
-            return view('cart', ['cities' => $cities, 'ongkir' => $ongkir]);
+            return view('cart', ['cities' => $cities, 'ongkir' => $ongkir, $perusahaans => 'perusahaans']);
         } catch (\Exception $e) {
             // Menangani kesalahan dan memberikan respons
             return response()->json(['error' => $e->getMessage()], 500);

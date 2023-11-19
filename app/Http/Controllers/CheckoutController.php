@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -39,9 +40,10 @@ class CheckoutController extends Controller
 
     public function index()
     {
+        $perusahaans = Perusahaan::all();
         $cart = session()->get('cart', []);
         $ongkir = session()->get('ongkir');
 
-        return view('checkout', compact('cart', 'ongkir'));
+        return view('checkout', compact('cart', 'ongkir','perusahaans'));
     }
 }

@@ -5,7 +5,7 @@
     <div class="card-body text-center">
 
         <img class="img-account-profile rounded-circle mb-2"
-            src="{{ asset('assets/storage/img/avatar.png') }}" alt>
+            src="{{ asset('storage/img/avatar.png') }}" alt>
 
         <form action="{{ route('update.avatar') }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
