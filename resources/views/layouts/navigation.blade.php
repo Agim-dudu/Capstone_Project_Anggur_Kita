@@ -17,7 +17,7 @@
                         aria-haspopup="true" aria-expanded="false">Profile</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="{{route('profile.edit')}}">Akun</a>
-                        <a class="dropdown-item" href="shop.html">Dahboard Admin</a>
+                        <a class="dropdown-item" href="{{route('dashboard')}}">Dahboard Admin</a>
                         <a class="dropdown-item" href="{{ route('wishlist') }}">Wishlist</a>
                         <a class="dropdown-item" href="{{ route('cart') }}">Cart</a>
                     </div>

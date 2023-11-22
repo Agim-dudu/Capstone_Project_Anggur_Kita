@@ -46,6 +46,11 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
+    public function acreate(): View
+    {
+        return view('admin.dashboard');
+    }
+
     // public function logout(Request $request): RedirectResponse
     // {
     //     Auth::logout();

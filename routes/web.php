@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\IndexController;
@@ -68,6 +69,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 
     Route::post('/contact', [ContactFormController::class, 'sendEmail'])->name('contact.send');
+
+    
     
 });
 

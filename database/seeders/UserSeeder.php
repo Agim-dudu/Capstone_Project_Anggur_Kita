@@ -37,6 +37,26 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        $user2 = new User([
+            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
+            'password' => Hash::make('strongpassword'),
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'phone' => '+628987654321',
+            'province_id' => '21',
+            'province' => 'Jawa Barat',
+            'city_id' => '42',
+            'city' => 'Bandung',
+            'address' => '123 Main Street',
+            'postal_code' => '40123',
+            'role' => 2,
+            'email_verified_at' => now(),
+        ]);
+        
+        $user2->save();
+        
+
         $user1->save();
     }
 }

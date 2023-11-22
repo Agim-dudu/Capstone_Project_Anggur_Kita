@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -33,6 +34,21 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.store');
+
+    Route::get('dashboard', [AdminController::class, 'dashboard'])
+                ->name('dashboard');
+
+    Route::get('user', [AdminController::class, 'user'])
+                ->name('user');
+    Route::delete('/user{id}', [AdminController::class, 'destroy'])->name('user.destroy');
+
+    Route::get('/user/create',[AdminController::class, 'create'])->name('admin.create');
+
+    Route::post('/admin',[AdminController::class, 'store'])->name('admin.store');
+
+    Route::get('/user/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+
+    Route::put('/user/{id}',[AdminController::class, 'update'])->name('user.update');
 });
 
 Route::middleware('auth')->group(function () {
