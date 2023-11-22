@@ -45,38 +45,41 @@
             </div>
             @endif
             @foreach ($products as $product)
-            <div class="col-md-6 col-lg-3 ftco-animate">
-                <div class="product">
-                    <a href="{{ route('product.show', ['id' => $product->id]) }}" class="img-prod"><img
-                            class="img-fluid" src="{{ asset('assets/images/'.$product->image) }}" alt="Product Image">
-                        <div class="overlay"></div>
-                    </a>
-                    <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="{{ route('product.show', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
-                        <div class="d-flex">
-                            <div class="pricing">
-                                <p class="price">Rp. {{ $product->price }}</p>
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="product">
+                        <a href="{{ route('product.show', ['id' => $product->id]) }}" class="img-prod">
+                            <img class="img-fluid" src="{{ asset('assets/images/'.$product->image) }}" alt="Product Image">
+                            <div class="overlay"></div>
+                        </a>
+                        <div class="text py-3 pb-4 px-3 text-center">
+                            <h3><a href="{{ route('product.show', ['id' => $product->id]) }}">{{ $product->name }}</a></h3>
+                            <div class="d-flex">
+                                <div class="pricing">
+                                    <p class="price">Rp. {{ $product->price }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="bottom-area d-flex px-3">
-                            <div class="m-auto d-flex">
-                                <a href="{{ route('add_to_cart', $product->id) }}"
-                                    class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                    <span><i class="ion-ios-add"></i></span>
-                                </a>
-                                <a href="{{route('cart')}}"
-                                    class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                    <span><i class="ion-ios-cart"></i></span>
-                                </a>
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                    <span><i class="ion-ios-heart"></i></span>
-                                </a>
+                            <div class="bottom-area d-flex px-3">
+                                <div class="m-auto d-flex">
+                                    <a href="{{ route('add_to_cart', $product->id) }}" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                        <span><i class="ion-ios-add"></i></span>
+                                    </a>
+                                    <a href="{{route('cart')}}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                        <span><i class="ion-ios-cart"></i></span>
+                                    </a>
+                                    <form id="wishlist-form-{{ $product->id }}" action="{{ route('wishlist.add.item') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
+                                    </form>
+                                    <a href="javascript:;" onclick="document.getElementById('wishlist-form-{{ $product->id }}').submit()" class="heart d-flex justify-content-center align-items-center">
+                                        <span><i class="ion-ios-heart"></i></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
+
 
         </div>
         <div class="row mt-5">

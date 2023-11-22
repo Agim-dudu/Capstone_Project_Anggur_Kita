@@ -2,16 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AboutController;
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ use App\Http\Controllers\WishlistController;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::get('/about', [ContactFormController::class, 'index'])->name('about');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactFormController::class, 'index'])->name('contact');
 
 
@@ -56,12 +57,16 @@ Route::middleware('auth', 'verified')->group(function () {
 
 
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+
+    Route::post('/wishlist/add', [WishlistController::class, 'addToWishlist'])->name('wishlist.add.item');
+    Route::delete('/wishlist/remove', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove.item');
+
     Route::get('/product/detail/{id}', [ProductController::class, 'show'])->name('product.show');
 
     Route::get('/product{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/cart', [CartController::class, 'CekOngkir']);
-    Route::delete('cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 
 
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
