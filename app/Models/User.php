@@ -60,4 +60,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the addresses associated with the user.
      */
+
+     public function wishlist()
+     {
+         return $this->hasMany(Wishlist::class, 'user_id', 'id');
+     }
 }

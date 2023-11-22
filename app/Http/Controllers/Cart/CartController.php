@@ -56,15 +56,16 @@ class CartController extends Controller
 
     public function remove(Request $request)
     {
-        if ($request->id) {
+        if ($request->product_id) {
             $cart = session()->get('cart');
-            if (isset($cart[$request->id])) {
-                unset($cart[$request->id]);
+            if (isset($cart[$request->product_id])) {
+                unset($cart[$request->product_id]);
                 session()->put('cart', $cart);
             }
-            session()->flash('success', 'Product successfully removed');
+            return redirect()->route('cart')->with('success', 'Produk Telah di Hapus pada keranjang');
         }
     }
+
 
     public function CekOngkir(Request $request)
     {
@@ -96,7 +97,7 @@ class CartController extends Controller
             session(['ongkir' => $ongkir]);
             $perusahaans = Perusahaan::all();
 
-            return view('cart', ['cities' => $cities, 'ongkir' => $ongkir, $perusahaans => 'perusahaans']);
+            return view('cart', compact('cities', 'ongkir', 'perusahaans'));
         } catch (\Exception $e) {
             // Menangani kesalahan dan memberikan respons
             return response()->json(['error' => $e->getMessage()], 500);

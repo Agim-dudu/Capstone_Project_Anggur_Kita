@@ -32,155 +32,40 @@
                                 <th>&nbsp;</th>
                                 <th>Product List</th>
                                 <th>&nbsp;</th>
+                                <th>Jenis</th>
                                 <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                            @foreach ($wishlistProducts as $wishlist)
+                                <tr class="text-center">
+                                    <td class="product-remove">
+                                        <form id="remove-wishlist-form-{{ $wishlist->product->id }}" action="{{ route('wishlist.remove.item') }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="product_id" value="{{ $wishlist->product->id }}">
+                                        </form>
+                                        <a href="javascript:;" onclick="document.getElementById('remove-wishlist-form-{{ $wishlist->product->id }}').submit()">
+                                            <span class="ion-ios-close"></span>
+                                        </a>
+                                    </td>
 
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-1.jpg);"></div>
-                                </td>
+                                    <td class="image-prod">
+                                        <div class="img" style="background-image:url({{ asset('images/product-1.jpg') }});"></div>
+                                    </td>
 
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
+                                    <td class="product-name">
+                                        <h3>{{ $wishlist->product->name}}</h3>
+                                        <p>{{ $wishlist->product->description}}</p>
+                                    </td>
 
-                                <td class="price">$4.90</td>
+                                    <td class="quantity">{{ $wishlist->product->type}}</td>
 
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
+                                    <td class="price">{{ $wishlist->product->price }}</td>
+                                </tr><!-- END TR-->
+                            @endforeach
 
-                                <td class="total">$4.90</td>
-                            </tr><!-- END TR-->
 
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-2.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-3.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-4.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-5.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
-
-                            <tr class="text-center">
-                                <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
-
-                                <td class="image-prod">
-                                    <div class="img" style="background-image:url(images/product-6.jpg);"></div>
-                                </td>
-
-                                <td class="product-name">
-                                    <h3>Bell Pepper</h3>
-                                    <p>Far far away, behind the word mountains, far from the countries</p>
-                                </td>
-
-                                <td class="price">$15.70</td>
-
-                                <td class="quantity">
-                                    <div class="input-group mb-3">
-                                        <input type="text" name="quantity" class="quantity form-control input-number"
-                                            value="1" min="1" max="100">
-                                    </div>
-                                </td>
-
-                                <td class="total">$15.70</td>
-                            </tr><!-- END TR-->
                         </tbody>
                     </table>
                 </div>

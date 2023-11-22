@@ -49,7 +49,17 @@
                             $weight += $details['quantity'] * 1000;
                             @endphp
                             <tr class="text-center">
-                                <td class="product-remove"><a href=""><span class="ion-ios-close"></span></a></td>
+                                
+                                <td class="product-remove">
+                                    <form id="remove-cart-form-{{ $details['product_id'] }}" action="{{ route('cart.remove') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $details['product_id'] }}">
+                                    </form>
+                                    <a href="javascript:;" onclick="document.getElementById('remove-cart-form-{{ $details['product_id'] }}').submit()">
+                                        <span class="ion-ios-close"></span>
+                                    </a>
+                                    
+                                </td>
 
                                 <td class="image-prod">
                                     <div class="img"
